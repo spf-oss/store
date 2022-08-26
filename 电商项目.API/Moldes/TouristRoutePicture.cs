@@ -1,4 +1,4 @@
-﻿namespace 电商项目.API
+﻿namespace 电商项目.API.Moldes
 {
     /// <summary>
     /// 旅游路线照片类

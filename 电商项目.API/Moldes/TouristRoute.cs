@@ -1,4 +1,4 @@
-﻿namespace 电商项目.API
+﻿namespace 电商项目.API.Moldes
 {
     /// <summary>
     /// 旅游路线
@@ -10,19 +10,29 @@
         public string? Title { get; set; }
 
         public string? Description { get; set; }
-        //原价
+        /// <summary>
+        /// 原价
+        /// </summary>
         public decimal OriginaPrice { get; set; }
-        //折扣
+        /// <summary>
+        /// 折扣
+        /// </summary>
         public double DiscountPresent { get; set; }
 
         public DateTime CreateTime { get; set; }
 
         public DateTime UpdateTime { get; set; }
-        //出发时间
+        /// <summary>
+        /// 出发时间
+        /// </summary>
         public DateTime DepartureTime { get; set; }
-        //卖点介绍
+        /// <summary>
+        /// 卖点介绍
+        /// </summary>
         public string? Feature { get; set; }
-        //费用说明
+        /// <summary>
+        /// 费用说明
+        /// </summary>
         public string? Fees { get; set; }
 
         public string? Notes { get; set; }
