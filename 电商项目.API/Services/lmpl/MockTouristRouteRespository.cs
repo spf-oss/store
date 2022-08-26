@@ -2,11 +2,11 @@
 
 namespace 电商项目.API.Services
 {
-    public class TouristRouteRespository : ITouristRouteRespository
+    public class MockTouristRouteRespository : ITouristRouteRespository
     {
         private readonly List<TouristRoute> _routes;
 
-        public TouristRouteRespository()
+        public MockTouristRouteRespository()
         {
             _routes = new List<TouristRoute>();
 
