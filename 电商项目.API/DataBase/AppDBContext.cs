@@ -9,8 +9,8 @@ namespace 电商项目.API.DataBase
         {
         }
 
-        public DbSet<TouristRoute> TouristRoutes { get; set; }
+        public DbSet<TouristRoute>? TouristRoutes { get; set; }
 
-        public DbSet <TouristRoutePicture> TouristRoutePictures { get; set; }
+        public DbSet <TouristRoutePicture>? TouristRoutePictures { get; set; }
     }
 }
