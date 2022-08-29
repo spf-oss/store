@@ -14,5 +14,21 @@ namespace 电商项目.API.DataBase
         public DbSet<TouristRoute> TouristRoutes { get; set; }
 
         public DbSet <TouristRoutePicture> TouristRoutePictures { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var touristRoute = new TouristRoute()
+            {
+                Id = Guid.NewGuid(),
+                Title = "TestTitle",
+                Description = "测试数据",
+                OriginaPrice = 0,
+                CreateTime = DateTime.UtcNow
+            };
+
+            _ = modelBuilder.Entity<TouristRoute>().HasData(touristRoute);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
