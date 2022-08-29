@@ -20,7 +20,7 @@ namespace 电商项目.API.Services
 
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
-            return _context.TouristRoutes!;
+            return _context.TouristRoutes;
         }
     }
 }
