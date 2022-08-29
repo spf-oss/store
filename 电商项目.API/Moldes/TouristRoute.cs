@@ -1,22 +1,30 @@
-﻿namespace 电商项目.API.Moldes
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace 电商项目.API.Moldes
 {
     /// <summary>
     /// 旅游路线
     /// </summary>
     public class TouristRoute
     {
+        [Key]
         public Guid Id { get; set; }
-
-        public string? Title { get; set; }
-
+        [Required]/* 必填字段 */
+        [MaxLength(100)]
+        public string Title { get; set; } = String.Empty;
+        [Required]
+        [MaxLength(1500)]
         public string? Description { get; set; }
         /// <summary>
         /// 原价
         /// </summary>
+        [Column(TypeName = "decimal(18,2)")]
         public decimal OriginaPrice { get; set; }
         /// <summary>
         /// 折扣
         /// </summary>
+        [Range(0.0, 1.0)]
         public double DiscountPresent { get; set; }
 
         public DateTime CreateTime { get; set; }
@@ -29,14 +37,16 @@
         /// <summary>
         /// 卖点介绍
         /// </summary>
-        public string? Feature { get; set; }
+        [MaxLength]
+        public string Feature { get; set; } = String.Empty;
         /// <summary>
         /// 费用说明
         /// </summary>
-        public string? Fees { get; set; }
+        [MaxLength]
+        public string Fees { get; set; } = String.Empty;
+        [MaxLength]
+        public string Notes { get; set; } = String.Empty;
 
-        public string? Notes { get; set; }
-
-        public ICollection<TouristRoutePicture>? TouristRoutePictures { get; set; }
+        public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; } = new List<TouristRoutePicture>();
     }
 }

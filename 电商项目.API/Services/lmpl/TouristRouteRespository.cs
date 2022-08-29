@@ -1,0 +1,26 @@
+﻿using 电商项目.API.DataBase;
+using 电商项目.API.Moldes;
+
+namespace 电商项目.API.Services
+{
+    public class TouristRouteRespository : ITouristRouteRespository
+    {
+        private readonly AppDBContext _context;
+
+        public TouristRouteRespository(AppDBContext context)
+        {
+            _context = context 
+                ?? throw new NotImplementedException(nameof(TouristRouteRespository));
+        }
+
+        public TouristRoute? GetTouristRoute(Guid id)
+        {
+            return _context.TouristRoutes.FirstOrDefault(m => m.Id == id);
+        }
+
+        public IEnumerable<TouristRoute> GetTouristRoutes()
+        {
+            return _context.TouristRoutes!;
+        }
+    }
+}
