@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace 电商项目.API.Moldes
@@ -20,11 +21,13 @@ namespace 电商项目.API.Moldes
         /// 原价
         /// </summary>
         [Column(TypeName = "decimal(18,2)")]
+        [JsonIgnore()]
         public decimal OriginaPrice { get; set; }
         /// <summary>
         /// 折扣
         /// </summary>
         [Range(0.0, 1.0)]
+        [JsonIgnore()]
         public double DiscountPresent { get; set; }
 
         public DateTime CreateTime { get; set; }

@@ -13,9 +13,9 @@ namespace 电商项目.API.Moldes
         public int Id { get; set; }
         [MaxLength(100)]
         public string Url { get; set; } = String.Empty;
-        [ForeignKey("TouristRouteId")]/* 外键关联 */
+        [ForeignKey("TouristRouteId")]
         public Guid TouristRouteId { get; set; }
 
-        public TouristRoute TouristRoute { get; set; } = new();
+        public TouristRoute TouristRoute { get; set; }
     }
 }
