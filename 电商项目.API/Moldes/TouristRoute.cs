@@ -51,5 +51,17 @@ namespace 电商项目.API.Moldes
         public string Notes { get; set; } = String.Empty;
 
         public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; } = new List<TouristRoutePicture>();
+        /// <summary>
+        /// 评分
+        /// </summary>
+        public double? Rating { get; set; }
+        /// <summary>
+        /// 旅游天数
+        /// </summary>
+        public TravelDays? TravelDays { get; set; }
+
+        public TripType? TripType { get; set; }
+
+        public DeparTureCity? DeparTureCity { get; set; }
     }
 }
