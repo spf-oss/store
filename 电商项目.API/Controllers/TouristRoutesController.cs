@@ -25,5 +25,14 @@ namespace 电商项目.API.Controllers
 
             return this.Ok(routs);
         }
+
+        [HttpGet]
+        [Route("GetTouristRoute")]
+        public IActionResult GetTouristRoute(Guid Id)
+        {
+            var rout = _touristRouteRespository.GetTouristRoute(Id);
+
+            return this.Ok(rout);
+        }
     }
 }
