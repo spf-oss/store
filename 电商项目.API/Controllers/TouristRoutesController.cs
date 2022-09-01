@@ -13,7 +13,7 @@ namespace 电商项目.API.Controllers
 
         public TouristRoutesController(ITouristRouteRespository touristRouteRespository)
         {
-            _touristRouteRespository = touristRouteRespository 
+            _touristRouteRespository = touristRouteRespository
                 ?? throw new NotImplementedException(nameof(ITouristRouteRespository));
         }
 
@@ -21,18 +21,28 @@ namespace 电商项目.API.Controllers
         [Route("GetTouristRoutes")]
         public IActionResult GetTouristRoutes()
         {
-            var routs = _touristRouteRespository.GetTouristRoutes();
+            var touristRoutesFromRepo = _touristRouteRespository.GetTouristRoutes();
 
-            return this.Ok(routs);
+            if (!touristRoutesFromRepo.Any())
+            {
+                return this.NotFound("没有旅游路线");
+            }
+
+            return this.Ok(touristRoutesFromRepo);
         }
 
         [HttpGet]
         [Route("GetTouristRoute")]
         public IActionResult GetTouristRoute(Guid Id)
         {
-            var rout = _touristRouteRespository.GetTouristRoute(Id);
+            var touristRouteFromRepo = _touristRouteRespository.GetTouristRoute(Id);
 
-            return this.Ok(rout);
+            if (touristRouteFromRepo == null)
+            {
+                return this.NotFound("旅游路线:\"  " + Id + "   找不到");
+            }
+
+            return this.Ok(touristRouteFromRepo);
         }
     }
 }
