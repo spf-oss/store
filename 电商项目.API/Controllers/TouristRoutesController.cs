@@ -34,7 +34,9 @@ namespace 电商项目.API.Controllers
                 return this.NotFound("没有旅游路线");
             }
 
-            return this.Ok(touristRoutesFromRepo);
+            var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(touristRoutesFromRepo);
+
+            return this.Ok(touristRoutesDto);
         }
 
         [HttpGet]
