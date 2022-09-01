@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using 电商项目.API.DataBase;
 using 电商项目.API.Services;
@@ -8,7 +9,12 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        _ = builder.Services.AddControllers();
+        _ = builder.Services.AddControllers(setupAction =>
+        {
+            setupAction.ReturnHttpNotAcceptable = true;
+        })
+            .AddXmlDataContractSerializerFormatters();
+
         _ = builder.Services.AddEndpointsApiExplorer();
         _ = builder.Services.AddSwaggerGen();
         _ = builder.Services.AddTransient<ITouristRouteRespository, TouristRouteRespository>();
