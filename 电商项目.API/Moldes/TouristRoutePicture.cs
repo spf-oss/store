@@ -16,6 +16,6 @@ namespace 电商项目.API.Moldes
         [ForeignKey("TouristRouteId")]
         public Guid TouristRouteId { get; set; }
 
-        public TouristRoute TouristRoute { get; set; }
+        public TouristRoute? TouristRoute { get; set; }
     }
 }

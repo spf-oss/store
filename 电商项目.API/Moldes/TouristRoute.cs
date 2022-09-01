@@ -28,7 +28,7 @@ namespace 电商项目.API.Moldes
         /// </summary>
         [Range(0.0, 1.0)]
         [JsonIgnore()]
-        public double DiscountPresent { get; set; }
+        public double? DiscountPresent { get; set; }
 
         public DateTime CreateTime { get; set; }
 

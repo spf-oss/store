@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using 电商项目.API.DataBase;
+using 电商项目.API.Dtos;
 using 电商项目.API.Services;
 
 namespace 电商项目.API.Controllers
@@ -42,7 +43,25 @@ namespace 电商项目.API.Controllers
                 return this.NotFound("旅游路线:\"  " + Id + "   找不到");
             }
 
-            return this.Ok(touristRouteFromRepo);
+            var touristRouteDto = new TouristRouteDto()
+            {
+                Title = touristRouteFromRepo.Title,
+                CreateTime = touristRouteFromRepo.CreateTime,
+                DeparTureCity = touristRouteFromRepo.DeparTureCity.ToString(),
+                DepartureTime = touristRouteFromRepo.DepartureTime,
+                Description = touristRouteFromRepo.Description,
+                Feature = touristRouteFromRepo.Feature,
+                Fees = touristRouteFromRepo.Fees,
+                Id = touristRouteFromRepo.Id,
+                Notes = touristRouteFromRepo.Notes,
+                Price = touristRouteFromRepo.OriginaPrice * (decimal)(touristRouteFromRepo.DiscountPresent ?? 1),
+                Rating = touristRouteFromRepo.Rating,
+                TravelDays = touristRouteFromRepo.TravelDays.ToString(),
+                TripType = touristRouteFromRepo.TripType.ToString(),
+                UpdateTime = touristRouteFromRepo.UpdateTime,
+            };
+
+            return this.Ok(touristRouteDto);
         }
     }
 }
