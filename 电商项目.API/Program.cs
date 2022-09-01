@@ -24,6 +24,7 @@ internal class Program
 
             _ = options.UseSqlite(ConnectionString);
         });
+        _ = builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         var app = builder.Build();
 
