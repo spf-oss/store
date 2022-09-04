@@ -11,7 +11,7 @@ namespace 电商项目.API.Moldes
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]/* 必填字段 */
+        [Required]/* 必填字段 */ 
         [MaxLength(100)]
         public string Title { get; set; } = String.Empty;
         [Required]
