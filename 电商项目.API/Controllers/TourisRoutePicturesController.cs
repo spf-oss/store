@@ -36,5 +36,24 @@ namespace 电商项目.API.Controllers
 
             return this.Ok(_mapper.Map<IEnumerable<TourisRoutePicturesDto>>(picturesFromRepo));
         }
+
+        [HttpGet]
+        [Route("api/RoutePictures/{tourisRouteId}/{pictureId}")]
+        public IActionResult GetPicture(Guid tourisRouteId, int pictureId)
+        {
+            if (!_tourist.TouristRoutesExists(tourisRouteId))
+            {
+                return this.NotFound("旅游线路不存在");
+            }
+
+            var pictureRepo = _tourist.GetPicture(pictureId);
+
+            if (pictureRepo == null)
+            {
+                return this.NotFound("图片不存在");
+            }
+
+            return this.Ok(_mapper.Map<TourisRoutePicturesDto>(pictureRepo));
+        }
     }
 }

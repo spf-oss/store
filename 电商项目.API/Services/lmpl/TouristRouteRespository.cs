@@ -13,6 +13,11 @@ namespace 电商项目.API.Services
                 ?? throw new NotImplementedException(nameof(TouristRouteRespository));
         }
 
+        public TouristRoutePicture? GetPicture(int pictureId)
+        {
+            return _context.TouristRoutePictures.FirstOrDefault(m => m.Id == pictureId);
+        }
+
         public IEnumerable<TouristRoutePicture> GetPicturesByTouristRouteId(Guid touristRouteId)
         {
             return _context.TouristRoutePictures.Where(m => m.TouristRouteId == touristRouteId).ToList();

@@ -14,5 +14,7 @@ namespace 电商项目.API.Services
         bool TouristRoutesExists(Guid touristId);
 
         IEnumerable<TouristRoutePicture> GetPicturesByTouristRouteId(Guid touristRouteId);
+
+        TouristRoutePicture? GetPicture(int pictureId);
     }
 }
