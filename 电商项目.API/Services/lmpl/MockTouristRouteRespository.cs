@@ -13,6 +13,11 @@ namespace 电商项目.API.Services
             this.Initialization();
         }
 
+        public IEnumerable<TouristRoutePicture> GetPicturesByTouristRouteId(Guid touristRouteId)
+        {
+            throw new NotImplementedException();
+        }
+
         public TouristRoute? GetTouristRoute(Guid id)
         {
             return _routes.FirstOrDefault(m => m.Id == id);
@@ -21,6 +26,11 @@ namespace 电商项目.API.Services
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
             return _routes;
+        }
+
+        public bool TouristRoutesExists(Guid touristId)
+        {
+            throw new NotImplementedException();
         }
 
         private void Initialization()
