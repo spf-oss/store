@@ -1,4 +1,5 @@
-﻿using 电商项目.API.DataBase;
+﻿using Microsoft.EntityFrameworkCore;
+using 电商项目.API.DataBase;
 using 电商项目.API.Moldes;
 
 namespace 电商项目.API.Services
@@ -25,12 +26,13 @@ namespace 电商项目.API.Services
 
         public TouristRoute? GetTouristRoute(Guid id)
         {
-            return _context.TouristRoutes.FirstOrDefault(m => m.Id == id);
+            return _context.TouristRoutes.Include(m => m.TouristRoutePictures).FirstOrDefault(m => m.Id == id);
         }
 
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
-            return _context.TouristRoutes;
+            //Include vs Join 数据表连接
+            return _context.TouristRoutes.Include(t => t.TouristRoutePictures);
         }
 
         public bool TouristRoutesExists(Guid touristId)

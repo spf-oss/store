@@ -44,5 +44,7 @@ namespace 电商项目.API.Dtos
         public string? TripType { get; set; }
 
         public string? DeparTureCity { get; set; }
+
+        public IEnumerable<TourisRoutePicturesDto> TouristRoutePictures { get; set; } = new List<TourisRoutePicturesDto>();
     }
 }
