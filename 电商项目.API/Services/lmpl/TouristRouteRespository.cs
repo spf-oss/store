@@ -10,7 +10,7 @@ namespace 电商项目.API.Services
 
         public TouristRouteRespository(AppDBContext context)
         {
-            _context = context 
+            _context = context
                 ?? throw new NotImplementedException(nameof(TouristRouteRespository));
         }
 
@@ -29,10 +29,20 @@ namespace 电商项目.API.Services
             return _context.TouristRoutes.Include(m => m.TouristRoutePictures).FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<TouristRoute> GetTouristRoutes()
+        public IEnumerable<TouristRoute> GetTouristRoutes(string keyword)
         {
             //Include vs Join 数据表连接
-            return _context.TouristRoutes.Include(t => t.TouristRoutePictures);
+            IQueryable<TouristRoute> result = _context.TouristRoutes
+                .Include(t => t.TouristRoutePictures);
+
+            if (!String.IsNullOrWhiteSpace(keyword))
+            {
+                keyword = keyword.Trim();
+
+                result = result.Where(t => t.Title.Contains(keyword));
+            }
+
+            return result.ToList();
         }
 
         public bool TouristRoutesExists(Guid touristId)

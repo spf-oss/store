@@ -7,7 +7,7 @@ namespace 电商项目.API.Services
     /// </summary>
     public interface ITouristRouteRespository
     {
-        IEnumerable<TouristRoute> GetTouristRoutes();
+        IEnumerable<TouristRoute> GetTouristRoutes(string keyword);
 
         TouristRoute? GetTouristRoute(Guid id);
 

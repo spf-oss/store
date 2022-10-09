@@ -25,9 +25,9 @@ namespace 电商项目.API.Controllers
 
         [HttpGet]
         [Route("GetTouristRoutes")]
-        public IActionResult GetTouristRoutes()
+        public IActionResult GetTouristRoutes([FromQuery]string keyword)
         {
-            var touristRoutesFromRepo = _touristRouteRespository.GetTouristRoutes();
+            var touristRoutesFromRepo = _touristRouteRespository.GetTouristRoutes(keyword);
 
             if (!touristRoutesFromRepo.Any())
             {
