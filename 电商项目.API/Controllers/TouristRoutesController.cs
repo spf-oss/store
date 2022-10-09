@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using 电商项目.API.DataBase;
 using 电商项目.API.Dtos;
+using 电商项目.API.ResourceParameters;
 using 电商项目.API.Services;
 
 namespace 电商项目.API.Controllers
@@ -25,9 +27,10 @@ namespace 电商项目.API.Controllers
 
         [HttpGet]
         [Route("GetTouristRoutes")]
-        public IActionResult GetTouristRoutes([FromQuery]string keyword)
+        public IActionResult GetTouristRoutes([FromQuery] TouristRouteResourceParamaters paramaters)
         {
-            var touristRoutesFromRepo = _touristRouteRespository.GetTouristRoutes(keyword);
+            var touristRoutesFromRepo = _touristRouteRespository.GetTouristRoutes(
+                paramaters.Keyword, paramaters.RatingOperator, paramaters.RatingValue ?? 0);
 
             if (!touristRoutesFromRepo.Any())
             {

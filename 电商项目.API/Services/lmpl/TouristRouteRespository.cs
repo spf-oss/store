@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using 电商项目.API.DataBase;
 using 电商项目.API.Moldes;
 
@@ -29,7 +30,7 @@ namespace 电商项目.API.Services
             return _context.TouristRoutes.Include(m => m.TouristRoutePictures).FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<TouristRoute> GetTouristRoutes(string keyword)
+        public IEnumerable<TouristRoute> GetTouristRoutes(string keyword, string operatorType, int raringVlaue)
         {
             //Include vs Join 数据表连接
             IQueryable<TouristRoute> result = _context.TouristRoutes
@@ -41,7 +42,15 @@ namespace 电商项目.API.Services
 
                 result = result.Where(t => t.Title.Contains(keyword));
             }
-
+            if (raringVlaue >= 0)
+            {
+                result = operatorType switch
+                {
+                    "largerThan" => result.Where(t => t.Rating >= raringVlaue),
+                    "lessThan" => result.Where(t => t.Rating <= raringVlaue),
+                    _ => result.Where(t => t.Rating == raringVlaue),
+                };
+            }
             return result.ToList();
         }
 

@@ -1,4 +1,5 @@
-﻿using 电商项目.API.Moldes;
+﻿using Microsoft.OpenApi.Models;
+using 电商项目.API.Moldes;
 
 namespace 电商项目.API.Services
 {
@@ -7,7 +8,7 @@ namespace 电商项目.API.Services
     /// </summary>
     public interface ITouristRouteRespository
     {
-        IEnumerable<TouristRoute> GetTouristRoutes(string keyword);
+        IEnumerable<TouristRoute> GetTouristRoutes(string keyword,string operatorType,int raringVlaue);
 
         TouristRoute? GetTouristRoute(Guid id);
 
