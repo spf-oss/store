@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using 电商项目.API.Dtos;
+using 电商项目.API.Moldes;
 using 电商项目.API.Services;
 
 namespace 电商项目.API.Controllers
@@ -54,6 +55,23 @@ namespace 电商项目.API.Controllers
             }
 
             return this.Ok(_mapper.Map<TourisRoutePicturesDto>(pictureRepo));
+        }
+
+        public IActionResult CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
+        {
+            var touristRouteModel = _mapper.Map<TouristRoute>(touristRouteForCreationDto);
+
+            _tourist.AddTouristRoute(touristRouteModel);
+
+            _ = _tourist.Save();
+
+            var touristRouteToReture = _mapper.Map<TouristRouteDto>(touristRouteModel);
+
+            return this.CreatedAtRoute(
+                "GetTouristRouteById",
+                new { touristRouteId = touristRouteToReture.Id },
+                touristRouteToReture
+            );
         }
     }
 }

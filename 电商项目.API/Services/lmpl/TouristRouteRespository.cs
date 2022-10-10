@@ -53,10 +53,23 @@ namespace 电商项目.API.Services
             }
             return result.ToList();
         }
-
         public bool TouristRoutesExists(Guid touristId)
         {
             return _context.TouristRoutes.Any(m => m.Id == touristId);
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
+        }
+
+        public void AddTouristRoute(TouristRoute touristRoute)
+        {
+            if (touristRoute == null)
+            {
+                throw new ArgumentNullException(nameof(touristRoute));
+            }
+            _ = _context.TouristRoutes.Add(touristRoute);
         }
     }
 }

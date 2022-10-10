@@ -33,6 +33,12 @@ namespace 电商项目.API.Profiles
                         src => src.DeparTureCity.ToString()
                     )
                 );
+
+            _ = this.CreateMap<TouristRouteForCreationDto, TouristRoute>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(src => Guid.NewGuid())
+                );
         }
     }
 }
