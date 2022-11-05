@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using 电商项目.API.DataBase;
 using 电商项目.API.Dtos;
+using 电商项目.API.Moldes;
 using 电商项目.API.ResourceParameters;
 using 电商项目.API.Services;
 
@@ -56,6 +57,25 @@ namespace 电商项目.API.Controllers
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
 
             return this.Ok(touristRouteDto);
+        }
+
+        [HttpPost]
+        [Route("api/RoutePictures")]
+        public IActionResult CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
+        {
+            var touristRouteModel = _mapper.Map<TouristRoute>(touristRouteForCreationDto);
+
+            _touristRouteRespository.AddTouristRoute(touristRouteModel);
+
+            _ = _touristRouteRespository.Save();
+
+            var touristRouteToReture = _mapper.Map<TouristRouteDto>(touristRouteModel);
+
+            return this.CreatedAtRoute(
+                "GetTouristRouteById",
+                new { touristRouteId = touristRouteToReture.Id },
+                touristRouteToReture
+            );
         }
     }
 }
