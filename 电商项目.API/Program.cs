@@ -18,6 +18,12 @@ internal class Program
         _ = builder.Services.AddEndpointsApiExplorer();
         _ = builder.Services.AddSwaggerGen();
         _ = builder.Services.AddTransient<ITouristRouteRespository, TouristRouteRespository>();
+
+        _ = builder.Services.AddLogging(loginbuild => 
+        {
+            _ = loginbuild.AddConsole();
+        });
+
         _ = builder.Services.AddDbContext<AppDBContext>(options =>
         {
             var ConnectionString = builder.Configuration.GetConnectionString("ConnectionString");

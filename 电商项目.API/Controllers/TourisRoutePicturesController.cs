@@ -12,8 +12,10 @@ namespace 电商项目.API.Controllers
         private readonly ITouristRouteRespository _tourist;
         private readonly IMapper _mapper;
 
-        public TourisRoutePicturesController(ITouristRouteRespository tourist, IMapper mapper)
+        public TourisRoutePicturesController(ITouristRouteRespository tourist, IMapper mapper,ILogger<TourisRoutePicturesController> logger)
         {
+            logger.LogInformation("旅游路线图片信息");
+
             _tourist = tourist ?? throw new ArgumentNullException(nameof(tourist));
 
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -57,6 +59,8 @@ namespace 电商项目.API.Controllers
             return this.Ok(_mapper.Map<TourisRoutePicturesDto>(pictureRepo));
         }
 
+        [HttpPost]
+        [Route("api/RoutePictures")]
         public IActionResult CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
         {
             var touristRouteModel = _mapper.Map<TouristRoute>(touristRouteForCreationDto);
