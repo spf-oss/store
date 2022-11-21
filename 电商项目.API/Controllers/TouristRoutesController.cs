@@ -60,7 +60,7 @@ namespace 电商项目.API.Controllers
         }
 
         [HttpPost]
-        [Route("api/RoutePictures")]
+        [Route("CreateRoutePictures")]
         public IActionResult CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
         {
             var touristRouteModel = _mapper.Map<TouristRoute>(touristRouteForCreationDto);
